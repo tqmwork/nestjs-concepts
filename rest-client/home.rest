@@ -17,3 +17,13 @@ Content-Type: application/json
     "nova chave": "another value"
 }
 
+###
+# update a new recado
+PATCH  {{baseUrl}}/recados/1/
+Content-Type: application/json
+
+{
+    "recado": "This is a new recado",
+    "nova chave": "another value"
+}
+
