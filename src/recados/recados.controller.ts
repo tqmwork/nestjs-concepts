@@ -1,12 +1,14 @@
-import { Controller, Get, Param, NotFoundException, Post, Body, Patch, Delete } from '@nestjs/common';
+import { Controller, Get, Param, NotFoundException, Post, Body, Patch, Delete, Query } from '@nestjs/common';
 
 @Controller('recados')
 export class RecadosController {
 
   private readonly recados = [`Recado 1`, `Recado 2`, `Recado 3`];
+  
   @Get()
-  findAll() {
-    return this.recados;
+  findAll(@Query() pagination: any) {
+    const { limit = 10, offset = 0 } = pagination;
+    return `this route will return all recados. Limit=${limit}, Offset=${offset}`;
   }
 
   @Get(':id')

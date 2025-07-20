@@ -2,6 +2,8 @@
 
 # Get all recados
 GET {{baseUrl}}/recados
+?limit=10
+&offset=120
 
 ###
 # Get a specific recado by ID
