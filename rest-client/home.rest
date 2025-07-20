@@ -1,1 +1,19 @@
-GET http://localhost:3000/api
+@baseUrl= http://localhost:3000
+
+# Get all recados
+GET {{baseUrl}}/recados
+
+###
+# Get a specific recado by ID
+GET {{baseUrl}}/recados/2
+
+###
+# Create a new recado
+POST {{baseUrl}}/recados
+Content-Type: application/json
+
+{
+    "recado": "This is a new recado",
+    "nova chave": "another value"
+}
+
