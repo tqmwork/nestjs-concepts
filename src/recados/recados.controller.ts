@@ -1,4 +1,4 @@
-import { Controller, Get, Param, NotFoundException, Post, Body, Patch } from '@nestjs/common';
+import { Controller, Get, Param, NotFoundException, Post, Body, Patch, Delete } from '@nestjs/common';
 
 @Controller('recados')
 export class RecadosController {
@@ -28,7 +28,9 @@ export class RecadosController {
     return { id, ...body };
   }
 
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return `This route will remove the recado with id: ${id}`;
+  }
 }
-
-
 
