@@ -1,33 +1,55 @@
-import { Controller, Get, Param, NotFoundException, Post, Body, Patch, Delete, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Param,
+  NotFoundException,
+  Post,
+  Body,
+  Patch,
+  Delete,
+  Query,
+  HttpStatus,
+} from '@nestjs/common';
+import { RecadosService } from './recados.service';
+import { CreateRecadoDto } from './dto/create-recado.dto';
+import { UpdateRecadoDto } from './dto/update-recado.dto';
+
+// • CRUD
+//• Create•->• POST•-> Criar um recado
+// • Read• ->• GET •->• Ler todos os • recados
+// • Read•-> •GET •->• Ler apenas um recado
+// • Update ->• PATCH •/• PUT->• Atualizar um recado
+//• Delete ->• DELETE • ->• Apagar um recado
+// • PATCH • é utilizado para atualizar dados de um recurso
+//• PUT• é utilizado para atualizar um recurso inteiro
+//•DTO -•Data Transfer Object -> Objeto de transferência de dados
+// • DTO ->• Objeto simples -›•Validar dados /• Transormar dados
 
 @Controller('recados')
 export class RecadosController {
+  recados: any;
+  constructor(private readonly recadosService: RecadosService) {}
 
-  private readonly recados = [`Recado 1`, `Recado 2`, `Recado 3`];
-  
   @Get()
   findAll(@Query() pagination: any) {
     const { limit = 10, offset = 0 } = pagination;
-    return `this route will return all recados. Limit=${limit}, Offset=${offset}`;
+    // return `this route will return all recados. Limit=${limit}, Offset=${offset}`;
+    return this.recadosService.findAll();
   }
 
   @Get(':id')
   findOne(@Param('id') grdId: number) {
-    const recado= this.recados[--grdId];
-    if (!recado) {
-      throw new NotFoundException(`Message not found for id: ${grdId}`);
-    }
-    return recado;
+    return this.recadosService.findOne(grdId);
   }
 
   @Post()
-  create(@Body() body: any) {
-    return body;
+  create(@Body() createRecadosDto: CreateRecadoDto) {
+    return this.recadosService.create(createRecadosDto);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() body: any) {
-    return { id, ...body };
+  update(@Param('id') id: string, @Body() updateRecadoDto: UpdateRecadoDto) {
+    return this.recadosService.update(id, updateRecadoDto);
   }
 
   @Delete(':id')
@@ -35,4 +57,3 @@ export class RecadosController {
     return `This route will remove the recado with id: ${id}`;
   }
 }
-
