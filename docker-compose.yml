@@ -1,0 +1,19 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql8
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: recadosdb
+      MYSQL_USER: recados123
+      MYSQL_PASSWORD: recados123
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./.docker/db:/var/lib/mysql
+    networks:
+      - mysql_network
+networks:
+  mysql_network:
+
+
