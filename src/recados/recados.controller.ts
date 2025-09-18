@@ -53,7 +53,7 @@ export class RecadosController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return `This route will remove the recado with id: ${id}`;
+  remove(@Param('id') id: number) {
+    return this.recadosService.remove(id);
   }
 }
