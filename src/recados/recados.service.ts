@@ -30,11 +30,11 @@ export class RecadosService {
   }
 
   findAll() {
-    return this.recados;
+    return this.recadosRepository.find();
   }
 
-  findOne(id: number) {
-    const recado = this.recados.find((item) => item.id == id);
+  async findOne(id: number) {
+    const recado = await this.recadosRepository.findOne( { where: { id } });
 
     if (recado) return recado;
 
