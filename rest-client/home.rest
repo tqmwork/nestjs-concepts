@@ -15,8 +15,9 @@ POST {{baseUrl}}/recados
 Content-Type: application/json
 
 {
-    "recado": "This is a new recado",
-    "nova chave": "another value"
+    "texto": "This is a new recado",
+    "de": "Roberto",
+    "para": "Cristina"
 }
 
 ###
