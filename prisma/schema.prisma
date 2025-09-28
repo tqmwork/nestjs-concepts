@@ -12,7 +12,7 @@ model recado {
   texto        String   @db.VarChar(255)
   de           String   @db.VarChar(50)
   para         String   @db.VarChar(50)
-  lido         Int      @default(0) @db.TinyInt
+  lido         Boolean  @default(false) @map("lido") // Mapeia TinyInt para Boolean
   data         DateTime @default(now()) @db.Timestamp(0)
   criadoEm     DateTime @default(now()) @db.DateTime(6)
   atualizadoEm DateTime @default(now()) @db.DateTime(6)

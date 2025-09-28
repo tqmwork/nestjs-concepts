@@ -1,40 +1,24 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Recado } from './entities/recado.entity';
 import { CreateRecadoDto } from './dto/create-recado.dto';
 import { UpdateRecadoDto } from './dto/update-recado.dto';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm/repository/Repository';
+import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class RecadosService {
-
-  constructor(
-    @InjectRepository(Recado)
-    private readonly recadosRepository: Repository<Recado>,
-  ) {}
-
-  private lastId = 1;
-  private recados: Recado[] = [
-    {
-      id: 1,
-      texto: 'Este é um recado de teste',
-      de: 'Joana',
-      para: 'João',
-      lido: false,
-      data: new Date(),
-    },
-  ];
+  constructor(private readonly prisma: PrismaService) {}
 
   throwNotFoundError() {
     throw new NotFoundException('Recado não encontrado');
   }
 
-  findAll() {
-    return this.recadosRepository.find();
+  async findAll() {
+    return await this.prisma.recado.findMany();
   }
 
   async findOne(id: number) {
-    const recado = await this.recadosRepository.findOne( { where: { id } });
+    const recado = await this.prisma.recado.findUnique({
+      where: { id },
+    });
 
     if (recado) return recado;
 
@@ -42,42 +26,45 @@ export class RecadosService {
   }
 
   async create(createRecadoDto: CreateRecadoDto) {
-    
-
-    
     const novoRecado = {
       ...createRecadoDto,
-      lido: false,
+      lido: false, // Agora é boolean
       data: new Date(),
     };
 
-    //this.recados.push(novoRecado);
-
-    const recado = this.recadosRepository.create(novoRecado);
-
-    return await this.recadosRepository.save(recado) ;
+    return await this.prisma.recado.create({
+      data: novoRecado,
+    });
   }
 
-  async update(id: number, updateRecadoDto: UpdateRecadoDto): Promise<Recado> {
-    const recadoExistente = await this.recadosRepository.preload({
-      id: Number(id),
-      ...updateRecadoDto
+  async update(id: number, updateRecadoDto: UpdateRecadoDto) {
+    // Verifica se o recado existe
+    const recadoExistente = await this.prisma.recado.findUnique({
+      where: { id },
     });
-   
+
     if (!recadoExistente) {
       throw new NotFoundException(`Recado with id ${id} not found`);
     }
 
-    return this.recadosRepository.save(recadoExistente);
+    return await this.prisma.recado.update({
+      where: { id },
+      data: updateRecadoDto,
+    });
   }
 
-  async remove(id: number): Promise<Recado> {
-    const recadoExistente = await this.recadosRepository.findOne( { where: { id } });
+  async remove(id: number) {
+    // Verifica se o recado existe
+    const recadoExistente = await this.prisma.recado.findUnique({
+      where: { id },
+    });
 
     if (!recadoExistente) {
-    throw new NotFoundException(`Recado with id ${id} not found`);
+      throw new NotFoundException(`Recado with id ${id} not found`);
     }
 
-    return await this.recadosRepository.remove(recadoExistente);
+    return await this.prisma.recado.delete({
+      where: { id },
+    });
   }
 }
