@@ -1,0 +1,19 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model recado {
+  id           Int      @id @default(autoincrement())
+  texto        String   @db.VarChar(255)
+  de           String   @db.VarChar(50)
+  para         String   @db.VarChar(50)
+  lido         Int      @default(0) @db.TinyInt
+  data         DateTime @default(now()) @db.Timestamp(0)
+  criadoEm     DateTime @default(now()) @db.DateTime(6)
+  atualizadoEm DateTime @default(now()) @db.DateTime(6)
+}

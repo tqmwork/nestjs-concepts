@@ -1,4 +1,4 @@
-@baseUrl= http://localhost:3000
+@baseUrl= http://localhost:3002
 
 # Get all recados
 GET {{baseUrl}}/recados
@@ -7,7 +7,7 @@ GET {{baseUrl}}/recados
 
 ###
 # Get a specific recado by ID
-GET {{baseUrl}}/recados/1
+GET {{baseUrl}}/recados/8
 
 ###
 # Create a new recado
