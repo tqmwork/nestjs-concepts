@@ -17,3 +17,12 @@ model recado {
   criadoEm     DateTime @default(now()) @db.DateTime(6)
   atualizadoEm DateTime @default(now()) @db.DateTime(6)
 }
+
+model pessoa {
+  id           Int      @id @default(autoincrement()) 
+  nome         String   @db.VarChar(100)
+  email        String   @db.VarChar(100)
+  senha        String   @db.VarChar(6)
+  criadoEm     DateTime @default(now()) @db.DateTime(6)
+  atualizadoEm DateTime @default(now()) @db.DateTime(6)
+}

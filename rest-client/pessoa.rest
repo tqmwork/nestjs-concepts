@@ -4,7 +4,7 @@ GET {{baseUrl}}/pessoa
 
 ###
 # Get a specific pessoa by ID
-GET {{baseUrl}}/pessoa/1
+GET {{baseUrl}}/pessoa/3
 
 ### Create a new pessoa
 POST {{baseUrl}}/pessoa
