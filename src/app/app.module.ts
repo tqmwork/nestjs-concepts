@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { RecadosModule } from 'src/recados/recados.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PrismaModule } from '../prisma/prisma.module'; // ← Novo import
+import { PessoaModule } from 'src/pessoa/pessoa.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { PrismaModule } from '../prisma/prisma.module'; // ← Novo import
     PrismaModule,
     
     RecadosModule,
+    PessoaModule
   ],
   controllers: [AppController],
   providers: [AppService],

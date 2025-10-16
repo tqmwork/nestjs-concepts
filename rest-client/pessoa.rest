@@ -1,0 +1,30 @@
+@baseUrl= http://localhost:3002
+### Get all pessoas
+GET {{baseUrl}}/pessoa
+
+###
+# Get a specific pessoa by ID
+GET {{baseUrl}}/pessoa/1
+
+### Create a new pessoa
+POST {{baseUrl}}/pessoa
+Content-Type: application/json
+
+{
+  "nome": "João Silva",
+  "idade": 30,
+  "email": "joao.silva@example.com"
+}   
+
+### Update 
+PATCH  {{baseUrl}}/pessoa/1
+Content-Type: application/json
+
+{
+  "nome": "João Silva",
+  "idade": 31,
+  "email": "joao.silva@example.com"
+}   
+
+### Delete a pessoa by ID
+DELETE {{baseUrl}}/pessoa/1
