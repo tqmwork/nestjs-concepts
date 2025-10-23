@@ -4,7 +4,7 @@ GET {{baseUrl}}/pessoa
 
 ###
 # Get a specific pessoa by ID
-GET {{baseUrl}}/pessoa/3
+GET {{baseUrl}}/pessoa/1
 
 ### Create a new pessoa
 POST {{baseUrl}}/pessoa
@@ -12,7 +12,7 @@ Content-Type: application/json
 
 {
   "nome": "João Silva",
-  "idade": 30,
+  "senha": "14",
   "email": "joao.silva@example.com"
 }   
 
@@ -21,10 +21,10 @@ PATCH  {{baseUrl}}/pessoa/1
 Content-Type: application/json
 
 {
-  "nome": "João Silva",
-  "idade": 31,
-  "email": "joao.silva@example.com"
+  "nome": "Roberto Oliveira",
+  "senha": "12",
+  "email": "roberto.oliveira@example.com"
 }   
 
 ### Delete a pessoa by ID
-DELETE {{baseUrl}}/pessoa/1
+DELETE {{baseUrl}}/pessoa/4
