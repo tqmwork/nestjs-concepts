@@ -1,0 +1,29 @@
+@baseUrl= http://localhost:3002
+### Get all empresas
+GET {{baseUrl}}/empresa
+
+###
+# Get a specific empresa by ID
+GET {{baseUrl}}/empresa/1
+
+### Create a new empresa
+POST {{baseUrl}}/empresa/
+Content-Type: application/json
+
+{
+  "nomeEmpresa": "TQMWork",
+  "cnpj": "14.123.456/0003-99"
+  
+}   
+
+### Update 
+PATCH  {{baseUrl}}/empresa/7
+Content-Type: application/json
+
+{
+  "nomeEmpresa": "TQMWork3",
+  "cnpj": "14.123.456/0001-99"
+}   
+
+### Delete a empresa by ID
+DELETE {{baseUrl}}/empresa/1

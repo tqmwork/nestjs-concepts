@@ -5,6 +5,7 @@ import { RecadosModule } from 'src/recados/recados.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PrismaModule } from '../prisma/prisma.module'; // ← Novo import
 import { PessoaModule } from 'src/pessoa/pessoa.module';
+import { EmpresaModule } from 'src/empresa/empresa.module';
 
 @Module({
   imports: [
@@ -26,7 +27,8 @@ import { PessoaModule } from 'src/pessoa/pessoa.module';
     PrismaModule,
     
     RecadosModule,
-    PessoaModule
+    PessoaModule,
+    EmpresaModule,
   ],
   controllers: [AppController],
   providers: [AppService],
