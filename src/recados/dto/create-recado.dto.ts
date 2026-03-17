@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, MaxLength, MinLength, IsBoolean, IsOptional, IsDate } from 'class-validator';
+import { IsNotEmpty, IsString, MaxLength, MinLength, IsBoolean, IsOptional, IsDate, IsNumber } from 'class-validator';
 
 export class CreateRecadoDto {
   @IsString()
@@ -7,17 +7,13 @@ export class CreateRecadoDto {
   @MaxLength(255) // Corrigido para 255
   readonly texto: string;
 
-  @IsString()
+  @IsNumber()
   @IsNotEmpty()
-  @MinLength(2)
-  @MaxLength(50)
-  readonly de: string;
+  readonly deId: number;
 
-  @IsString()
+  @IsNumber()
   @IsNotEmpty()
-  @MinLength(2)
-  @MaxLength(50)
-  readonly para: string;
+  readonly paraId: number;
 
   @IsBoolean()
   @IsOptional()

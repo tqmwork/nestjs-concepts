@@ -10,13 +10,16 @@ datasource db {
 model recado {
   id           Int      @id @default(autoincrement())
   texto        String   @db.VarChar(255)
-  de           String   @db.VarChar(50)
-  para         String   @db.VarChar(50)
+  deId         Int
+  de           pessoa   @relation("recadoDe", fields: [deId], references: [id], onDelete: Cascade)
+  paraId       Int
+  para         pessoa   @relation("recadoPara", fields: [paraId], references: [id], onDelete: Cascade)
   lido         Boolean  @default(false)
   data         DateTime @default(now()) @db.Timestamp(0)
   criadoEm     DateTime @default(now()) @db.DateTime(6)
   atualizadoEm DateTime @default(now()) @db.DateTime(6)
 }
+
 
 model pessoa {
   id           Int      @id @default(autoincrement())
@@ -25,7 +28,10 @@ model pessoa {
   senha        String   @db.VarChar(6)
   criadoEm     DateTime @default(now()) @db.DateTime(6)
   atualizadoEm DateTime @default(now()) @db.DateTime(6)
+  recadosDe    recado[] @relation("recadoDe")
+  recadosPara  recado[] @relation("recadoPara")
 }
+
 
 model empresa {
   id           Int      @id @default(autoincrement())

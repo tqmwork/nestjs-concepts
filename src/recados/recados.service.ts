@@ -12,12 +12,54 @@ export class RecadosService {
   }
 
   async findAll() {
-    return await this.prisma.recado.findMany();
-  }
+    return this.prisma.recado.findMany({
+      select: {
+        id: true,
+        texto: true,
+        lido: true,
+        data: true,
+        criadoEm: true,
+        atualizadoEm: true,
+        de: {
+          select: {
+            id: true,
+            nome: true,
+          },
+        },
+        para: {
+          select: {
+            id: true,
+            nome: true,
+          },
+        },  
+      },
+    });
+  } 
+  
 
   async findOne(id: number) {
     const recado = await this.prisma.recado.findUnique({
       where: { id },
+      select: {
+        id: true,
+        texto: true,
+        lido: true,
+        data: true,
+        criadoEm: true,
+        atualizadoEm: true,
+        de: {
+          select: {
+            id: true,
+            nome: true,
+          },
+        },
+        para: {
+          select: {
+            id: true,
+            nome: true,
+          },
+        },  
+      },  
     });
 
     if (recado) return recado;
@@ -27,8 +69,10 @@ export class RecadosService {
 
   async create(createRecadoDto: CreateRecadoDto) {
     const novoRecado = {
-      ...createRecadoDto,
-      lido: false, // Agora é boolean
+      texto: createRecadoDto.texto,
+      deId: createRecadoDto.deId,
+      paraId: createRecadoDto.paraId,
+      lido: false,
       data: new Date(),
     };
 

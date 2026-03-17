@@ -11,9 +11,9 @@ POST {{baseUrl}}/pessoa
 Content-Type: application/json
 
 {
-  "nome": "João Silva",
+  "nome": "Roberto Oliveira",
   "senha": "14",
-  "email": "joao.silva@example.com"
+  "email": "roberto.oliveira@example.com"
 }   
 
 ### Update 

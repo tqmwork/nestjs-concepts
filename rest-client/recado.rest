@@ -7,7 +7,7 @@ GET {{baseUrl}}/recados
 
 ###
 # Get a specific recado by ID
-GET {{baseUrl}}/recados/25
+GET {{baseUrl}}/recados/2
 
 ###
 # Create a new recado
@@ -16,21 +16,23 @@ Content-Type: application/json
 
 {
     "texto": "This is a new recado",
-    "de": "Roberto",
-    "para": "Cristina"
+    "deId": 3,
+    "paraId": 1
 }
 
 ###
 # update a new recado
-PATCH  {{baseUrl}}/recados/25
+PATCH  {{baseUrl}}/recados/1
 Content-Type: application/json
 
 {
-    "texto": "This is a new update with prisma 2"
+    "texto": "This is a new update with prisma 2",
+    "deId": 1,
+    "paraId": 3
     
 }
 
 ###
 # delete recado
-DELETE  {{baseUrl}}/recados/25/
+DELETE  {{baseUrl}}/recados/3/
 
